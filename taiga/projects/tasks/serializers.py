@@ -37,6 +37,12 @@ from taiga.users.serializers import UserBasicInfoSerializer
 from . import models
 
 
+class BasicTaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Task
+        fields = ('id', 'ref', 'subject', 'status', 'is_blocked', 'is_iocaine')
+
+
 class TaskSerializer(WatchersValidator, VoteResourceSerializerMixin, EditableWatchedResourceModelSerializer, serializers.ModelSerializer):
     tags = TagsField(required=False, default=[])
     external_reference = PgArrayField(required=False)
